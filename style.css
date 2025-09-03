@@ -31,6 +31,19 @@ body {
   color: var(--ink-secondary);
 }
 
+.app-footer {
+  text-align: center;
+  margin: 1.8rem 0 2.2rem;
+  font-family: var(--font-header);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--ink-tertiary);
+  opacity: 0.8;
+}
+.app-footer strong {
+  color: var(--ink-primary);
+}
+
 .app-wrapper {
   min-height: 100vh;
   display: flex;
