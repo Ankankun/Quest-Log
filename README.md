@@ -8,9 +8,7 @@ A retro notebook–styled, gamified task tracker. Add quests, earn XP, level up,
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | ![Preview 1](./screenshots/preview-1.png) | ![Preview 2](./screenshots/preview-2.png) | ![Preview 3](./screenshots/preview-3.png) |
 
-> Add screenshots to a `screenshots/` folder (or swap URLs) so these render.
-
-Live Demo (optional): `https://Quest-Log.ankankun.me/`
+Live Demo : https://Quest-Log.ankankun.me/
 
 ---
 
@@ -63,7 +61,7 @@ Quest-Log/
   style-guide.md
   component-breakdown.md
   README.md
-  screenshots/      # (add your images)
+  screenshots/     # The website previews
 ```
 
 ---
@@ -112,27 +110,6 @@ All major colors & fonts live at the top of `style.css` under `:root`. Example:
 }
 ```
 
-Swap fonts or tweak palette instantly. Try a dark mode variant by scoping overrides under a `.dark` class.
-
----
-
-## 🚀 Getting Started
-
-```bash
-git clone https://github.com/Ankankun/Quest-Log.git
-cd Quest-Log
-```
-
-Open `index.html` directly, or run a lightweight server:
-
-```bash
-# Python 3
-python -m http.server 5173
-# then visit http://localhost:5173
-```
-
-No build step. Just code.
-
 ---
 
 ## 💾 Persistence Details
@@ -144,24 +121,6 @@ No build step. Just code.
 | Level | `questLog_level` | Integer           |
 
 Isolation: browser + device + profile. Incognito/private windows reset on close.
-
-### Manual Export / Import
-
-```js
-// Export
-copy(JSON.stringify({
-  tasks: localStorage.getItem('questLog_tasks'),
-  xp: localStorage.getItem('questLog_xp'),
-  level: localStorage.getItem('questLog_level')
-}));
-
-// Import
-const data = /* paste object */;
-localStorage.setItem('questLog_tasks', data.tasks);
-localStorage.setItem('questLog_xp', data.xp);
-localStorage.setItem('questLog_level', data.level);
-location.reload();
-```
 
 ---
 
@@ -199,7 +158,7 @@ location.reload();
 
 ## 🛡️ License
 
-MIT License © 2025 YOUR NAME (change as you wish).
+MIT License © 2025 Ankankun .
 
 ---
 
@@ -208,17 +167,6 @@ MIT License © 2025 YOUR NAME (change as you wish).
 - Fonts: Google Fonts (Courier Prime, Indie Flower)
 - Textures: transparenttextures.com
 - Inspiration: stationery + light gamification.
-
----
-
-## 💬 FAQ
-
-| Q                                | A                                             |
-| -------------------------------- | --------------------------------------------- |
-| Why no frameworks?               | Showcases grasp of raw DOM + state.           |
-| Can data sync across devices?    | Not yet—needs backend or manual export.       |
-| How do I theme it?               | Edit CSS variables in `:root`.                |
-| Where do spiral holes come from? | JS generates `span` elements based on height. |
 
 ---
 
