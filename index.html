@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Quest Log</title>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Indie+Flower&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-wrapper">
+      <section class="quest-app" aria-label="Quest Log">
+        <div class="binding" aria-hidden="true">
+          <!-- spiral holes -->
+          <span></span><span></span><span></span><span></span><span></span> <span></span
+          ><span></span><span></span><span></span><span></span><span></span> <span></span
+          ><span></span><span></span><span></span>
+        </div>
+        <header class="app-header">
+          <h1 class="title">QUEST LOG</h1>
+          <div class="subtitle-ribbon">Adventure Awaits!</div>
+        </header>
+
+        <section class="xp-section" aria-label="Progress">
+          <div class="xp-labels">
+            <span>PROGRESS</span>
+            <span class="xp-value" id="xpValue">Lv 1 • 0/100 XP</span>
+          </div>
+          <div class="xp-bar" aria-hidden="false" aria-label="XP Progress">
+            <div class="xp-bar-track">
+              <div class="xp-bar-fill" id="xpFill"></div>
+              <div class="xp-ticks" aria-hidden="true">
+                <span></span><span></span><span></span><span></span
+                ><!-- 20% ticks -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="new-quest" aria-label="Add a new quest">
+          <form id="questForm" autocomplete="off">
+            <div class="input-wrapper">
+              <input
+                id="questInput"
+                class="quest-input"
+                type="text"
+                placeholder="write a new task..."
+                aria-label="Quest description"
+              />
+              <input id="dueInput" type="date" class="date-input" aria-label="Due date" />
+              <button
+                type="button"
+                id="dateToggle"
+                class="icon-btn"
+                title="Pick due date"
+                aria-label="Pick due date"
+              >
+                <img src="assets/calendar.png" alt="Calendar" />
+              </button>
+              <button
+                type="submit"
+                class="icon-btn add-btn"
+                title="Add quest"
+                aria-label="Add quest"
+              >
+                <img src="assets/add.png" alt="Add" />
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="list-section" aria-label="Active quests">
+          <h2 class="list-title">ACTIVE QUESTS</h2>
+          <ul id="questList" class="quest-list" aria-live="polite"></ul>
+        </section>
+      </section>
+    </main>
+    <template id="questItemTemplate">
+      <li class="quest-item" data-id="">
+        <div class="item-main">
+          <button class="checkbox" aria-label="Toggle complete" title="Complete"></button>
+          <div class="text-block">
+            <p class="quest-text"></p>
+            <p class="quest-meta"></p>
+          </div>
+          <button
+            class="star-btn"
+            aria-label="Mark important"
+            title="Mark important"
+            data-favorite="false"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path
+                class="star-shape"
+                d="M12 17.3l-6.18 3.25 1.18-6.88L2 8.97l6.91-1L12 1.7l3.09 6.27 6.91 1-5 4.7 1.18 6.88z"
+              />
+            </svg>
+          </button>
+          <button class="delete-btn" aria-label="Delete quest" title="Delete quest">✕</button>
+        </div>
+        <div class="flash" aria-hidden="true"></div>
+      </li>
+    </template>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,509 @@
+:root {
+  --paper-bg: #f8f5e6;
+  --paper-notebook: #f9f6ea;
+  --paper-note: #fffbe6;
+  --ink-primary: #4a3e2a;
+  --ink-secondary: #3a3027;
+  --ink-tertiary: #8a7b6a;
+  --nb-binding: #d4c5a8;
+  --nb-binding-border: #b5a88a;
+  --int-primary: #9c6644;
+  --func-danger: #9e2b25;
+  --func-danger-hover: #7d1f1c;
+  --progress-track: #efe9d9;
+  --progress-bar: #a4c3a2;
+  --reward-star: #d4b556;
+  --reward-star-border: #b5a88a;
+  --reward-complete: #f3eed7;
+  --shadow-soft: 0 3px 6px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-note: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --font-header: "Courier Prime", monospace;
+  --font-body: "Indie Flower", cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--paper-bg) url("https://www.transparenttextures.com/patterns/paper.png");
+  color: var(--ink-secondary);
+}
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.quest-app {
+  position: relative;
+  background: var(--paper-notebook)
+    url("https://www.transparenttextures.com/patterns/old-paper.png");
+  max-width: 620px;
+  width: 100%;
+  padding: 2.5rem 3rem 2.5rem 4.5rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--nb-binding-border);
+}
+
+/* Spiral Binding */
+.binding {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70px;
+  padding: 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.binding span {
+  width: 22px;
+  height: 22px;
+  background: var(--nb-binding);
+  border: 2px solid var(--nb-binding-border);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.title {
+  font-family: var(--font-header);
+  font-size: 2.25rem;
+  letter-spacing: 3px;
+  margin: 0 0 0.75rem;
+  color: var(--ink-primary);
+  text-shadow:
+    1px 1px 0 #d4c5a8,
+    2px 2px 0 #b5a88a;
+}
+.subtitle-ribbon {
+  display: inline-block;
+  background: #d4c5a8;
+  padding: 0.35rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--ink-secondary);
+  border: 1px solid var(--nb-binding-border);
+  transform: rotate(-1deg);
+  box-shadow: var(--shadow-soft);
+}
+
+/* XP Section */
+.xp-section {
+  margin-bottom: 1.8rem;
+}
+.xp-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-header);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: var(--ink-primary);
+  margin-bottom: 0.4rem;
+}
+.xp-bar-track {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background: var(--progress-track)
+    url("https://www.transparenttextures.com/patterns/notebook-dark.png");
+  border: 1px dashed var(--nb-underline);
+  overflow: hidden;
+}
+.xp-bar-fill {
+  height: 100%;
+  background: var(--progress-bar) url("https://www.transparenttextures.com/patterns/notebook.png");
+  width: 0%;
+  transition: width 0.6s ease;
+}
+.xp-ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.xp-ticks span {
+  width: 1px;
+  background: var(--nb-binding-border);
+  opacity: 0.6;
+}
+.xp-value {
+  font-family: var(--font-header);
+}
+
+/* New Quest Form */
+.new-quest {
+  margin-bottom: 1.6rem;
+}
+.input-wrapper {
+  background: var(--paper-note) url("https://www.transparenttextures.com/patterns/notebook.png");
+  border: 1px solid var(--nb-binding-border);
+  box-shadow: var(--shadow-note);
+  border-radius: 4px;
+  padding: 1.1rem 1.1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+.quest-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  padding: 0.3rem 0 0.4rem;
+  outline: none;
+  border-bottom: 2px solid var(--nb-underline);
+}
+.quest-input::placeholder {
+  color: var(--ink-tertiary);
+}
+.date-input {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid var(--nb-underline);
+  padding: 0.2rem 0;
+}
+.date-input.visible {
+  display: inline-block;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.15rem 0.25rem;
+  color: var(--int-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.18s cubic-bezier(0.4, 0.6, 0.2, 1),
+    filter 0.25s;
+  position: relative;
+}
+.icon-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: currentColor;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.35s,
+    transform 0.35s;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.icon-btn:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}
+.icon-btn:hover::after {
+  opacity: 0.08;
+  transform: scale(1);
+}
+.icon-btn:active {
+  transform: translateY(0) scale(0.95);
+  filter: brightness(0.85);
+}
+.icon-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  pointer-events: none;
+}
+.add-btn img {
+  width: 26px;
+  height: 26px;
+}
+
+/* List Section */
+.list-title {
+  font-family: var(--font-header);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin: 0 0 0.8rem;
+  color: var(--ink-primary);
+  position: relative;
+}
+.list-title::after {
+  content: "";
+  display: block;
+  width: 130px;
+  height: 3px;
+  background: var(--nb-underline);
+  margin-top: 4px;
+}
+.quest-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Quest Item */
+.quest-item {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.item-main {
+  background: var(--paper-note);
+  border: 1px solid var(--nb-binding-border);
+  box-shadow: var(--shadow-soft);
+  padding: 0.85rem 0.9rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+.quest-item.important .item-main {
+  background: #f5efd6;
+}
+.checkbox {
+  width: 22px;
+  height: 22px;
+  background: var(--paper-note);
+  border: 2px solid var(--ink-primary);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(74, 62, 42, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.checkbox:focus {
+  outline: none;
+}
+.checkbox:focus-visible {
+  outline: 2px solid var(--int-primary);
+  outline-offset: 2px;
+}
+.checkbox.checked {
+  background: var(--paper-note) url("assets/check.png") center/72% no-repeat;
+}
+.text-block {
+  flex: 1;
+  min-width: 0;
+}
+.quest-text {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--ink-secondary);
+  line-height: 1.15;
+  display: inline-block;
+  position: relative;
+}
+.quest-text.editing {
+  display: none;
+}
+.edit-input {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid var(--nb-underline);
+  padding: 0 0 2px;
+  outline: none;
+}
+
+.quest-item.completed .quest-text {
+  opacity: 0.65;
+}
+.quest-item.completed .quest-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 50%;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.9;
+  transform: translateY(-45%);
+}
+.quest-meta {
+  margin: 0;
+  font-family: var(--font-header);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--func-danger);
+  opacity: 0.65;
+}
+.quest-item.completed .quest-meta {
+  color: var(--ink-tertiary);
+  text-decoration: none;
+}
+.star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+.star-shape {
+  fill: none;
+  stroke: var(--reward-star-border);
+  stroke-width: 2;
+}
+.star-btn.active .star-shape {
+  fill: var(--reward-star);
+  stroke: var(--reward-star-border);
+}
+.star-btn:hover .star-shape {
+  stroke: var(--reward-star);
+}
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--func-danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 0.35rem;
+}
+.delete-btn:hover {
+  color: var(--func-danger-hover);
+}
+
+/* Flash effect when completing */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: var(--reward-complete);
+  opacity: 0;
+  pointer-events: none;
+}
+.quest-item.flash-on .flash {
+  animation: flashComplete 0.8s ease;
+}
+@keyframes flashComplete {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Floating star animation */
+.quest-item .floating-star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: starPop 1s ease-in-out forwards;
+  font-size: 1.6rem;
+  color: var(--reward-star);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+@keyframes starPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(-50%, -60%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -80%) scale(0.9);
+  }
+}
+
+/* Level Up banner (optional) */
+.level-up {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  background: var(--reward-star);
+  color: var(--ink-secondary);
+  font-family: var(--font-header);
+  padding: 0.6rem 1.2rem;
+  letter-spacing: 2px;
+  border: 2px solid var(--reward-star-border);
+  box-shadow: 0 6px 14px -4px rgba(0, 0, 0, 0.3);
+  animation: fadeSlide 1.8s ease forwards;
+}
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Scroll adjustments for small screens */
+@media (max-width: 680px) {
+  .quest-app {
+    padding: 2.2rem 1.5rem 2.5rem 3.8rem;
+  }
+  .title {
+    font-size: 1.9rem;
+  }
+  .binding {
+    width: 62px;
+  }
+}
+@media (max-width: 520px) {
+  .quest-app {
+    padding: 2rem 1.2rem 2.4rem 3.5rem;
+  }
+  .binding {
+    width: 55px;
+  }
+  .subtitle-ribbon {
+    font-size: 0.95rem;
+  }
+  .quest-text {
+    font-size: 1rem;
+  }
+}
